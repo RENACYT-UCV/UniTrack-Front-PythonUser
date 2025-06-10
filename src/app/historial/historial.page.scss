@@ -1,8 +1,11 @@
 .lbl {
-  color: #4a6fff;
+  color: #2C4372;
   font-size: 45px;
   text-transform: none;
-  font-weight: 550;
+  font-weight: 900;
+  margin-right: 0px;
+  display: flex;
+  justify-content: center;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -15,17 +18,25 @@
 }
 
 .imgper {
+  display: flex;
+  justify-content: center;
   width: 80px;
-  height: 60px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  height: 40px;
   border-radius: 30px;
-  background-color: #555;
+  background-color: #DD2324;
+  border: 2px solid #DD2324;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
+.imgper:hover {
+  background-color: #ae1717;
+}
+
 .imgper .foto{
+  margin-top: 8px;
   text-align: center;
-  margin-top: 16px;
-  color: #f2f2f2;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 .ibtn{
@@ -57,7 +68,7 @@
 }
 
 ion-row{
-  border: solid 2px rgb(132, 130, 130);
+  border: solid 2px rgb(11, 11, 11);
 }
 
 div{
@@ -75,9 +86,10 @@ ion-content {
 }
 
 ion-row {
-  border: solid 2px rgb(132, 130, 130);
+  border: solid 1px rgb(5, 5, 5);
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin: 15px;
+  gap: 0px;
 }
 
 ion-row:nth-child(even) {
@@ -89,7 +101,8 @@ ion-row {
 }
 
 ion-col {
-  padding: 0 12px;
+  padding: 0px;
+  text-align: center;
 }
 
 ion-footer ion-toolbar {
@@ -104,7 +117,9 @@ ion-footer ion-toolbar ion-grid {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 0; /* Agregar un poco de espacio de relleno */
+  padding: 8px 0px; /* Agregar un poco de espacio de relleno */
+  margin: 0px;
+  
 }
 
 ion-footer ion-toolbar ion-grid ion-button {
