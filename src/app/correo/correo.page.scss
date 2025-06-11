@@ -19,6 +19,7 @@ ion-header {
   padding: 20px;
   /* background-color: #215fad;   */
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  animation: fadeIn 0.8s ease-out;
 }
 
 .password-reset-card {
@@ -78,6 +79,11 @@ ion-item {
   --padding-start: 0;
   margin-bottom: 15px;
   --border-width: 0;
+  transition: all 0.3s ease;
+}
+
+ion-item:focus-within {
+  animation: focusIn 0.3s ease-out forwards;
 }
 
 .custom-input {
@@ -157,4 +163,26 @@ ion-item {
   /* align-items: center; */
   /* justify-content: center; */
   box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes focusIn {
+  from {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

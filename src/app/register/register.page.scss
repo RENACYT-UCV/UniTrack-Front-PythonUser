@@ -31,6 +31,7 @@ ion-content {
   width: 100%;
   min-height: 100%;
   padding: 60px; /* Restaurado el padding general a 60px */
+  animation: fadeIn 0.8s ease-out;
 
   @media (max-width: 768px) {
     padding: 20px; /* Reducir padding en móviles */
@@ -84,6 +85,7 @@ ion-item {
 ion-item:focus-within {
   box-shadow: 0 0 0 4px rgba(35, 53, 89, 0.3);
   background: transparent !important;
+  animation: focusIn 0.3s ease-out forwards;
 }
 
 .lbl {
@@ -244,11 +246,31 @@ ion-select.custom-input {
   }
 }
 
-
 @media (max-width: 768px) {
   .card-header {
     justify-content: center; /* Centrar todo en pantallas pequeñas */
-    /* Eliminado padding-left y padding-right en móvil */
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes focusIn {
+  from {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
