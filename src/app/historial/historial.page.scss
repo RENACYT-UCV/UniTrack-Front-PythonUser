@@ -1,7 +1,3 @@
-:host{
-
-}
-
 .lbl {
   color: #073A8D;
   font-size: 52px;
@@ -77,8 +73,11 @@
   justify-content: start;
   height: 100%;
   width: 100%;
+  margin-right: 20px;
+  margin-left: 20px;
+
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .btnex{
@@ -184,5 +183,5 @@ ion-footer ion-toolbar ion-grid ion-button {
 }
 
 .nav-btn:hover ion-icon {
-  color: #DD2324;
+  color: #ff1818;
 }
