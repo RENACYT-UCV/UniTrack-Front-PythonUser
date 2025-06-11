@@ -57,14 +57,14 @@ ion-list{
 
 
 .text {
-  display: flex; /* Necesario para usar justify-content */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente (si aplica) */
+  display: flex; 
+  justify-content: center;
+  align-items: center;    
   color: #BFBFBF;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   margin: 0px 10px 30px 10px;
-  text-align: center; /* Para centrar el texto si hay más de una línea */
+  text-align: center;
 }
 
 
@@ -111,13 +111,13 @@ ion-list{
     margin: auto;
     text-transform: none;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    transform: scale(1); /* Estado normal */
+    transform: scale(1); 
 }
 
 .btn-qr:hover {
     --background: #7f0202;
     color: white;
-    transform: scale(1.01); /* Escala al hacer hover */
+    transform: scale(1.01); 
 }
 
 .select-item-container {

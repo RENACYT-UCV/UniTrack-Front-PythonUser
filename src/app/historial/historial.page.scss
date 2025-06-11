@@ -30,12 +30,15 @@
   border-radius: 30px;
   padding: 8px 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   width: fit-content; /* ajusta al contenido */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  transform: scale(1); /* Estado normal */
 }
 
 .imgper:hover {
   background-color: #ae1717;
+  transform: scale(1.01); /* Escala al hacer hover */
+
 }
 
 .imgper ion-icon {

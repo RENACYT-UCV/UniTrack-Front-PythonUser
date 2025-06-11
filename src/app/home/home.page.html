@@ -11,9 +11,7 @@
     </ion-item>
     
     <ion-item class="nombre" lines="none">
-      <!-- <ion-label class="nom">{{ nombrecompleto }}</ion-label> -->
-      <ion-label class="nom">Nombre Apellido</ion-label>
-      
+      <ion-label class="nom">{{ nombrecompleto }}</ion-label>      
     </ion-item>
 
     <ion-item class="ioniit" lines="none">
@@ -22,7 +20,7 @@
 
     <!-- Switch para seleccionar entrada o salida -->
     <div class="select-item-container">
-      <label class="toggle-label">{{ isEntrada ? 'ENTRADA' : 'SALIDA' }}</label>
+      <label class="toggle-label">{{ isEntrada ? 'Entrada' : 'Salida' }}</label>
       <ion-toggle [(ngModel)]="isEntrada" (ionChange)="onToggleChange()"></ion-toggle>
     </div>
 
