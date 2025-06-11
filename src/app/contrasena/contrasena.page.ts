@@ -10,8 +10,13 @@ import { EnvioCorreoService } from '../services/envio-correo.service';
 })
 export class ContrasenaPage implements OnInit {
   newPassword: string = '';
+  showPassword = false;
 
   constructor(private userService: EnvioCorreoService, private navCtrl: NavController) {}
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   resetPassword() {
     this.userService.resetPassword(this.newPassword, this.userService.currentUser.code).subscribe(

@@ -83,7 +83,9 @@ ion-item {
 }
 
 ion-item:focus-within {
-  animation: focusIn 0.3s ease-out forwards;
+  /* animation: focusIn 0.4s ease-out forwards; */
+  box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2); /* Sombra azul brillante */
+  border-color: #4a6fff; /* Borde azul al enfocar */
 }
 
 .custom-input {
@@ -109,6 +111,13 @@ ion-item:focus-within {
   margin-top: 30px;
   --background: #233559;
   margin-bottom: 5px; 
+  transition: all 0.3s ease;
+}
+
+.action-button-reset:hover, 
+.action-button-reset:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 // Enlace "Volver al Login"
@@ -139,6 +148,13 @@ ion-item:focus-within {
   height: 55px;
   width: 100%;
   margin: 0;
+  transition: all 0.3s ease;
+}
+
+.back-to-login-button:hover,
+.back-to-login-button:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -168,21 +184,21 @@ ion-item:focus-within {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes focusIn {
   from {
-    transform: scale(0.98);
-    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(74, 111, 255, 0); /* Sin sombra al inicio */
+    border-color: #e0e0e0; /* Color de borde inicial */
   }
   to {
-    transform: scale(1);
-    opacity: 1;
+    box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2); /* Sombra azul brillante */
+    border-color: #4a6fff; /* Borde azul al enfocar */
   }
 }

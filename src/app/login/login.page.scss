@@ -133,10 +133,9 @@ ion-list {
 }
 
 .input-item:focus-within {
-  box-shadow: 0 0 0 3px rgba(35, 53, 89, 0.2);
+  box-shadow: 0 0 0 4px rgba(35, 53, 89, 0.3);
   border-color: #233559 !important;
   background: #f5f7fa !important;
-  animation: focusIn 0.3s ease-out forwards;
 }
 
 .custom-input:focus, .custom-input:active, .custom-input:focus-visible {
@@ -159,12 +158,14 @@ ion-list {
   width: 100%;
   text-transform: none;
   letter-spacing: 0.5px;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
 
 .login-button:hover,
 .login-button.ion-focused {
   --background: #18253f;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .link-text {
@@ -175,11 +176,13 @@ ion-list {
   margin: 5px 0;
   width: 100%;
   text-align: center;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
 }
 
 .link-text:hover {
   color: #18253f;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .warning-text {
@@ -355,22 +358,22 @@ ion-list {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes focusIn {
   from {
-    transform: scale(0.98);
-    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(74, 111, 255, 0);
+    border-color: #e0e0e0;
   }
   to {
-    transform: scale(1);
-    opacity: 1;
+    box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2);
+    border-color: #4a6fff;
   }
 }
 
