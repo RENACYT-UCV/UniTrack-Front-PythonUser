@@ -1,18 +1,8 @@
-// --- Estilos para el HEADER ---
-ion-header {
-  ion-toolbar {
-    --background: #0426ac;
-  }
+:host {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-ion-content {
-  --background: #0426ac; 
-  display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  padding: 20px; 
-}
+
 
 .main-container {
   display: flex;
@@ -21,6 +11,7 @@ ion-content {
   align-items: center;
   width: 100%;
   min-height: 100%; 
+  animation: fadeIn 0.8s ease-out;
 }
 
 // Estilos para el contenedor del título principal y la descripción
@@ -47,7 +38,7 @@ ion-content {
 }
 
 .password-reset-card {
-  background: white; 
+  background: white;
   width: 90%; 
   max-width: 450px; 
   border-radius: 20px; 
@@ -55,53 +46,110 @@ ion-content {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); // Sombra sutil
   margin: 0;
   overflow-y: auto;
-  max-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-height: 80vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
 }
 
-// --- Estilos para los ELEMENTOS DEL FORMULARIO ---
-ion-list {
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  width: 100%;
+// --- Estilos para los ELEMENTOS DENTRO DE LA TARJETA ---
+
+// Título principal dentro de la tarjeta
+.card-title-item {
+  --background: transparent;
+  --border-width: 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 5px; 
 }
 
-ion-item {
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333; 
+  text-align: center;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+// Mensaje secundario dentro de la tarjeta
+.message-item {
+  --background: transparent;
+  --border-width: 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 30px; 
+}
+
+.message-label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #666; 
+  font-weight: 500;
+  text-align: center;
+  white-space: normal;
+}
+
+// Input de correo (reutiliza custom-input)
+ion-item { 
   --background: transparent;
   --inner-padding-end: 0;
   --padding-start: 0;
-  margin-bottom: 20px; // Espacio entre los inputs
+  margin-bottom: 15px;
   --border-width: 0;
+  transition: all 0.3s ease;
+}
+
+ion-item:focus-within {
+  /* animation: focusIn 0.4s ease-out forwards; */
+  box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2); /* Sombra azul brillante */
+  border-color: #4a6fff; /* Borde azul al enfocar */
 }
 
 .custom-input {
   --background: rgba(207, 207, 207, 0.484);
-  --border-color: #e0e0e0; // Borde sutil
-  --border-radius: 8px; // Bordes redondeados
+  --border-color: #e0e0e0;
+  --border-radius: 8px;
   --padding-start: 15px;
   height: 50px;
   font-size: 1rem;
   font-weight: 500;
   width: 100%;
+
+  ion-icon[slot="start"] {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+  }
 }
 
-.action-button { 
+.password-toggle-icon {
+  font-size: 1.4rem;
+  color: #233559; /* Color del icono */
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.action-button-reset {
   --box-shadow: none;
   --border-radius: 25px; 
-  text-transform: uppercase; 
+  text-transform: none; 
   font-weight: 600;
   font-size: 1.2rem;
-  height: 55px;
+  height: 55px; 
   width: 100%;
   margin-top: 30px;
-  --background: #0426ac; 
-  margin-bottom: 15px;
+  --background: #233559;
+  margin-bottom: 5px; 
+  transition: all 0.3s ease;
 }
 
-.back-to-login { // Contenedor para el enlace
+.action-button-reset:hover,
+.action-button-reset:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+// Enlace "Volver al Login"
+.back-to-login {
   --background: transparent;
   --border-width: 0;
   margin-top: 0;
@@ -109,31 +157,77 @@ ion-item {
 }
 
 .link-button {
-  --color: var(--ion-color-secondary); // Color azul para el texto del enlace
+  --color: var(--ion-color-tertiary, #5151f2); 
   font-size: 0.95rem;
   font-weight: 500;
-  text-transform: none; // Sin mayúsculas
+  text-transform: none; 
   height: auto;
   --padding-start: 0;
   --padding-end: 0;
 }
 
-/* Media Queries para responsividad */
+.back-to-login-button {
+  --background: #DD2324;
+  --box-shadow: none;
+  --border-radius: 25px;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  height: 55px;
+  width: 100%;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.back-to-login-button:hover,
+.back-to-login-button:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
 @media (min-width: 768px) {
   .password-reset-card {
     width: 60%;
-  }
-  .message-container {
-    max-width: 600px;
   }
 }
 
 @media (min-width: 1024px) {
   .password-reset-card {
-    width: 450px;
-    padding: 30px 40px; // Aumentar padding horizontal para un diseño más compacto
+    width: 450px; 
+    /* padding: 30px 40px; */
   }
-  .message-container {
-    max-width: 450px; // Ajusta el ancho del mensaje para que coincida con la tarjeta
+}
+
+// Fondo con imagen y overlay azul
+.login-bg-image {
+  --background: none;
+  background: linear-gradient(rgba(35,53,89,0.85), rgba(35,53,89,0.85)), url('/assets/fondo ucv.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+  width: 100vw;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes focusIn {
+  from {
+    box-shadow: 0 0 0 0 rgba(74, 111, 255, 0); /* Sin sombra al inicio */
+    border-color: #e0e0e0; /* Color de borde inicial */
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2); /* Sombra azul brillante */
+    border-color: #4a6fff; /* Borde azul al enfocar */
   }
 }

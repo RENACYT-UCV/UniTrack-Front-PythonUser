@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
@@ -11,8 +10,9 @@ import { response } from 'express';
 })
 
 export class LoginPage implements OnInit {
- correoE: string=''; 
- contrasenaE: string =''; 
+  correoE: string=''; 
+  contrasenaE: string =''; 
+  showPassword: boolean = false;
   
   
  constructor(private userService: UserService, private router: Router) { }

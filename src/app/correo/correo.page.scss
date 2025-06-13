@@ -1,3 +1,7 @@
+:host {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 ion-header {
   ion-toolbar {
     --background: #0426ac;
@@ -13,8 +17,9 @@ ion-header {
   width: 100%;
   min-height: 100%;
   padding: 20px;
-  background-color: #0426ac;  
-
+  /* background-color: #215fad;   */
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  animation: fadeIn 0.8s ease-out;
 }
 
 .password-reset-card {
@@ -62,7 +67,7 @@ ion-header {
   font-size: 0.95rem;
   line-height: 1.4;
   color: #666; 
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   white-space: normal;
 }
@@ -74,6 +79,13 @@ ion-item {
   --padding-start: 0;
   margin-bottom: 15px;
   --border-width: 0;
+  transition: all 0.3s ease;
+}
+
+ion-item:focus-within {
+  /* animation: focusIn 0.4s ease-out forwards; */
+  box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2); /* Sombra azul brillante */
+  border-color: #4a6fff; /* Borde azul al enfocar */
 }
 
 .custom-input {
@@ -87,18 +99,24 @@ ion-item {
   width: 100%;
 }
 
-
 .action-button-reset {
   --box-shadow: none;
-  --border-radius: 8px; 
-  text-transform: uppercase; 
+  --border-radius: 25px; 
+  text-transform: none; 
   font-weight: 600;
   font-size: 1.2rem;
-  height: 50px; 
+  height: 55px; 
   width: 100%;
   margin-top: 30px;
-  --background: #0426ac;
-  margin-bottom: 20px; 
+  --background: #233559;
+  margin-bottom: 5px; 
+  transition: all 0.3s ease;
+}
+
+.action-button-reset:hover, 
+.action-button-reset:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 // Enlace "Volver al Login"
@@ -119,6 +137,30 @@ ion-item {
   --padding-end: 0;
 }
 
+.back-to-login-button {
+  --background: #DD2324;
+  --box-shadow: none;
+  --border-radius: 25px;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  height: 55px;
+  width: 100%;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.back-to-login-button:hover,
+.back-to-login-button:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 400px) {
+  ::ng-deep ion-input.custom-input input::placeholder {
+    font-size: 13px !important;
+  }
+}
 
 @media (min-width: 768px) {
   .password-reset-card {
@@ -129,5 +171,39 @@ ion-item {
 @media (min-width: 1024px) {
   .password-reset-card {
     width: 450px; 
+  }
+}
+
+// Fondo con imagen y overlay azul
+.login-bg-image {
+  --background: none;
+  background: linear-gradient(rgba(35,53,89,0.85), rgba(35,53,89,0.85)), url('/assets/fondo ucv.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+  width: 100vw;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes focusIn {
+  from {
+    box-shadow: 0 0 0 0 rgba(74, 111, 255, 0); /* Sin sombra al inicio */
+    border-color: #e0e0e0; /* Color de borde inicial */
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(74, 111, 255, 0.4), 0 0 8px rgba(74, 111, 255, 0.2); /* Sombra azul brillante */
+    border-color: #4a6fff; /* Borde azul al enfocar */
   }
 }

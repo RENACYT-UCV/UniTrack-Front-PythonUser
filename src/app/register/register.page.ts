@@ -19,6 +19,10 @@ export class RegisterPage implements OnInit {
   edad: string= ''; 
   sexo: string = '';
   
+  // Propiedades para el campo de contraseña
+  passwordInputType: string = 'password';
+  showPasswordIcon: string = 'eye-off-outline';
+
   constructor(private userService: UserService, private router: Router) { }
 
   onSubmit() {
@@ -70,6 +74,17 @@ export class RegisterPage implements OnInit {
 }
 
   ngOnInit() {
+  }
+
+  // Función para alternar la visibilidad de la contraseña
+  togglePasswordVisibility() {
+    if (this.passwordInputType === 'password') {
+      this.passwordInputType = 'text';
+      this.showPasswordIcon = 'eye-outline';
+    } else {
+      this.passwordInputType = 'password';
+      this.showPasswordIcon = 'eye-off-outline';
+    }
   }
 
 }
