@@ -6,15 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CorreoPageRoutingModule } from './correo-routing.module';
 
-import { CorreoPage } from './correo.page';
-
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CorreoPageRoutingModule
-  ],
-  declarations: [CorreoPage]
+  imports: [CommonModule, FormsModule, IonicModule, CorreoPageRoutingModule],
 })
 export class CorreoPageModule {}

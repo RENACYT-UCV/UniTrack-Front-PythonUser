@@ -6,15 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { ContrasenaPageRoutingModule } from './contrasena-routing.module';
 
-import { ContrasenaPage } from './contrasena.page';
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ContrasenaPageRoutingModule
+    ContrasenaPageRoutingModule,
   ],
-  declarations: [ContrasenaPage]
 })
 export class ContrasenaPageModule {}
