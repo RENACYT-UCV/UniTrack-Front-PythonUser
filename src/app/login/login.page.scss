@@ -19,6 +19,8 @@
 ion-content {
   --background: #fff;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 .login-blue-bg {
@@ -215,6 +217,8 @@ ion-list {
   }
   .login-card {
     max-width: 98vw;
+    display: flex;
+    justify-content: center;
     border-radius: 18px;
     padding: 14px 0px 10px 0px;
     margin: 150px auto 18px auto;
