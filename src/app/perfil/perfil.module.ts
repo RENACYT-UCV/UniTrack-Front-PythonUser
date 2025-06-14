@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { PerfilPageRoutingModule } from './perfil-routing.module';
 
 import { UserService } from '../services/user.service';
+import { PerfilPage } from './perfil.page';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, PerfilPageRoutingModule],
+  declarations: [PerfilPage],
   providers: [UserService],
 })
 export class PerfilPageModule {}
