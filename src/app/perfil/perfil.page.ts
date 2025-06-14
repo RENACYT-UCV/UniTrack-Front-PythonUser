@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
+  editando: boolean = false;
   nombrecompleto: string = '';
   codigo_estudiante: string = '';
   carreraE: string = '';
@@ -35,7 +36,16 @@ export class PerfilPage implements OnInit {
       error: (err) => {
         console.error('Error fetching profile:', err);
         // Handle error, e.g., redirect to login or show an alert
-      }
+      },
     });
+  }
+
+  toggleEditarPerfil() {
+    {
+      this.editando = !this.editando;
+      if (!this.editando) {
+        console.log('Guardando cambios...');
+      }
+    }
   }
 }

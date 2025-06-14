@@ -9,9 +9,21 @@
     </div>
 
     <div class="text-header-right">
-        <div class="imgper">
-        </div>
+      <div class="imgper">
+      </div>
     </div>
+
+    <div class="btn-icono-editar"
+      style="display: flex; flex-direction: column; align-items: flex-start; background-color: rgb(71, 4, 4); margin: 10px 0px 10px 20px; border-radius: 10px;">
+      <!-- Botón con ícono dinámico -->
+      <button id="btn-editar-perfil" (click)="toggleEditarPerfil()" class="btn-icono-editar">
+        <ion-icon [name]="editando ? 'save-outline' : 'create-outline'" id="icono-editar"></ion-icon>
+      </button>
+    </div>
+
+
+
+
   </div>
 
   <ion-list lines="none" class="ion-text-center profile-list">
@@ -34,58 +46,60 @@
 
 
 
-  <div class="form-container-profile">
-    <div class="form-grid">
-      
-      <div class="form-col">
-        <div class="form-row duo">
-          <div class="form-group">
-            <div class="tit">Ciclo:</div>
-            <div class="sub-container">
-              <div class="sub-form">{{ cicloE }}</div>
-            </div>
+    <div class="form-container-profile">
+      <div class="form-grid">
 
+        <div class="form-col">
+          <div class="form-row duo">
+            <div class="form-group">
+              <div class="tit">Ciclo:</div>
+              <div class="sub-container">
+                <div class="sub-form">{{ cicloE }}</div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <div class="tit">Edad:</div>
+              <div class="sub-container">
+                <div class="sub-form">{{ edadE }}</div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <div class="tit">Edad:</div>
-            <div class="sub-container">
-              <div class="sub-form">{{ edadE }}</div>
+
+          <div class="form-row">
+            <div class="form-group full">
+              <div class="tit">Sexo:</div>
+              <div class="sub-container">
+                <div class="sub-form">{{ sexoE }}</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group full">
-            <div class="tit">Sexo:</div>
-            <div class="sub-container">
-              <div class="sub-form">{{ sexoE }}</div>
+        <div class="form-col">
+          <div class="form-row">
+            <div class="form-group full">
+              <div class="tit">Correo universitario:</div>
+              <div class="sub-container">
+                <div class="sub-form">{{ correoE }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group full">
+              <div class="tit">Correo del apoderado:</div>
+              <div class="sub-container">
+                <div class="sub-form">{{ correoA }}</div>
+              </div>
             </div>
           </div>
         </div>
+
+
+
       </div>
-
-      <div class="form-col">
-        <div class="form-row">
-          <div class="form-group full">
-            <div class="tit">Correo universitario:</div>
-            <div class="sub-container">
-              <div class="sub-form">{{ correoE }}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group full">
-            <div class="tit">Correo del apoderado:</div>
-            <div class="sub-container">
-              <div class="sub-form">{{ correoA }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
   </ion-list>
 
 </ion-content>
