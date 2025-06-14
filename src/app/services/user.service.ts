@@ -11,28 +11,53 @@ import { Preferences } from '@capacitor/preferences';
 export class UserService {
   private ApiBackEndUrl = environment.ApiBackEndUrl;
   public currentUser: any = null;
+  private _accessToken: string | null = null;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {
-    this.loadUserFromPreferences();
+    this.loadUserFromPreferences().then(() => {
+      if (!this.currentUser) {
+        this.getProfile().subscribe({
+          next: (user) => {
+            this.setCurrentUser(user);
+          },
+          error: (err) => {
+            console.error('Error loading user profile on service init:', err);
+          }
+        });
+      }
+    });
   }
 
-  private async loadUserFromPreferences() {
-    const { value } = await Preferences.get({ key: 'currentUser' });
-    if (value) {
-      this.currentUser = JSON.parse(value);
+  public async loadUserFromPreferences() {
+    const { value: userValue } = await Preferences.get({ key: 'currentUser' });
+    if (userValue) {
+      this.currentUser = JSON.parse(userValue);
+    }
+    const { value: tokenValue } = await Preferences.get({ key: 'access_token' });
+    if (tokenValue) {
+      this._accessToken = tokenValue;
     }
   }
 
   async setPreferences(key: string, value: string) {
+    if (key === 'access_token') {
+      this._accessToken = value;
+    }
     await Preferences.set({ key, value });
   }
 
   async getPreferences(key: string): Promise<string | null> {
+    if (key === 'access_token' && this._accessToken) {
+      return this._accessToken;
+    }
     const { value } = await Preferences.get({ key });
     return value;
   }
 
   async removePreferences(key: string) {
+    if (key === 'access_token') {
+      this._accessToken = null;
+    }
     await Preferences.remove({ key });
   }
 
@@ -80,6 +105,30 @@ export class UserService {
       this.getPreferences('access_token').then(token => {
         if (token) {
           this.http.get(`${this.ApiBackEndUrl}/users/profile`, {
+            headers: { Authorization: `Bearer ${token}` }
+          }).subscribe({
+            next: (response) => {
+              observer.next(response);
+              observer.complete();
+            },
+            error: (error) => {
+              observer.error(error);
+            }
+          });
+        } else {
+          observer.error('No access token found');
+        }
+      }).catch(error => {
+        observer.error(error);
+      });
+    });
+  }
+
+  getHistory(idUsuario: number): Observable<any> {
+    return new Observable(observer => {
+      this.getPreferences('access_token').then(token => {
+        if (token) {
+          this.http.get(`${this.ApiBackEndUrl}/historial/historial/${idUsuario}`, {
             headers: { Authorization: `Bearer ${token}` }
           }).subscribe({
             next: (response) => {
