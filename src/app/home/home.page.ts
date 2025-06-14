@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomePage implements OnInit {
   nombrecompleto: string = 'Nombre Completo';
   isEntrada: boolean = true;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private navCtrl: NavController) {}
 
   async ngOnInit() {
     await this.userService.loadUserFromPreferences();
@@ -35,5 +36,12 @@ export class HomePage implements OnInit {
   generarQR() {
     // Logic to generate QR code
     console.log('Generar QR button clicked.');
+  }
+
+  async logout() {
+    await this.userService.removePreferences('access_token');
+    await this.userService.removePreferences('currentUser');
+    this.userService.currentUser = null;
+    this.navCtrl.navigateRoot('/login');
   }
 }

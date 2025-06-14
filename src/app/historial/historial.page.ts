@@ -19,10 +19,7 @@ export class HistorialPage implements OnInit {
         this.userService.getHistory(data.idUsuario).subscribe({
           next: (historyData) => {
             this.reportes = historyData.map((item: any) => ({
-              idUsuario: item.u_idUsuario,
-              nombre: item.u_nombres,
-              email: item.u_correo,
-              fecha: item.r_fecha,
+              fecha: new Date(item.r_fecha).toLocaleDateString('es-ES'),
               hora: item.r_hora,
               modo: item.r_modo,
             }));
