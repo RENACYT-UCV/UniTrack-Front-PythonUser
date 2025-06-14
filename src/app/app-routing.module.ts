@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'qr',
-    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
-  },
-  {
     path: 'historial',
     loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
   },
