@@ -12,10 +12,19 @@ export class HomePage implements OnInit {
 
   constructor(private userService: UserService) {}
 
-  ngOnInit() {
-    if (this.userService.currentUser) {
-      this.nombrecompleto = `${this.userService.currentUser.nombres} ${this.userService.currentUser.apellidos}`;
-    }
+  async ngOnInit() {
+    await this.userService.loadUserFromPreferences();
+    this.userService.getProfile().subscribe({
+      next: (user) => {
+        if (user) {
+          this.userService.setCurrentUser(user);
+          this.nombrecompleto = `${user.nombres} ${user.apellidos}`;
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching profile in home page:', err);
+      }
+    });
   }
 
   onToggleChange() {
