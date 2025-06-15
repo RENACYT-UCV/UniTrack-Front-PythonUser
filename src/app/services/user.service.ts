@@ -4,6 +4,20 @@ import { Observable, throwError } from 'rxjs';
 import { NavController } from '@ionic/angular';
 import { environment } from '../../environments/environment';
 import { Preferences } from '@capacitor/preferences';
+import { HttpHeaders } from '@angular/common/http';
+
+interface UserProfile {
+  idUsuario?: number;
+  nombres: string;
+  apellidos: string;
+  correo: string;
+  codigoEstudiante: string;
+  correoA?: string;
+  carrera: string;
+  ciclo: string;
+  edad: string;
+  sexo: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +36,7 @@ export class UserService {
           },
           error: (err) => {
             console.error('Error loading user profile on service init:', err);
-          }
+          },
         });
       }
     });
@@ -33,7 +47,9 @@ export class UserService {
     if (userValue) {
       this.currentUser = JSON.parse(userValue);
     }
-    const { value: tokenValue } = await Preferences.get({ key: 'access_token' });
+    const { value: tokenValue } = await Preferences.get({
+      key: 'access_token',
+    });
     if (tokenValue) {
       this._accessToken = tokenValue;
     }
@@ -96,54 +112,87 @@ export class UserService {
   }
 
   // Establecer el usuario actual
- async setCurrentUser(user: any) {
+  async setCurrentUser(user: any) {
     this.currentUser = user;
   }
 
   getProfile(): Observable<any> {
-    return new Observable(observer => {
-      this.getPreferences('access_token').then(token => {
-        if (token) {
-          this.http.get(`${this.ApiBackEndUrl}/users/profile`, {
-            headers: { Authorization: `Bearer ${token}` }
-          }).subscribe({
-            next: (response) => {
-              observer.next(response);
-              observer.complete();
-            },
-            error: (error) => {
-              observer.error(error);
-            }
-          });
-        } else {
-          observer.error('No access token found');
-        }
-      }).catch(error => {
-        observer.error(error);
-      });
+    return new Observable((observer) => {
+      this.getPreferences('access_token')
+        .then((token) => {
+          if (token) {
+            this.http
+              .get(`${this.ApiBackEndUrl}/users/profile`, {
+                headers: { Authorization: `Bearer ${token}` },
+              })
+              .subscribe({
+                next: (response) => {
+                  observer.next(response);
+                  observer.complete();
+                },
+                error: (error) => {
+                  observer.error(error);
+                },
+              });
+          } else {
+            observer.error('No access token found');
+          }
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
     });
   }
 
   getHistory(idUsuario: number): Observable<any> {
-    return new Observable(observer => {
-      this.getPreferences('access_token').then(token => {
+    return new Observable((observer) => {
+      this.getPreferences('access_token')
+        .then((token) => {
+          if (token) {
+            this.http
+              .get(`${this.ApiBackEndUrl}/historial/historial/${idUsuario}`, {
+                headers: { Authorization: `Bearer ${token}` },
+              })
+              .subscribe({
+                next: (response) => {
+                  observer.next(response);
+                  observer.complete();
+                },
+                error: (error) => {
+                  observer.error(error);
+                },
+              });
+          } else {
+            observer.error('No access token found');
+          }
+        })
+        .catch((error) => {
+          observer.error(error);
+        });
+    });
+  }
+
+  updateProfile(userData: UserProfile): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.getPreferences('access_token').then((token) => {
         if (token) {
-          this.http.get(`${this.ApiBackEndUrl}/historial/historial/${idUsuario}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          }).subscribe({
-            next: (response) => {
-              observer.next(response);
-              observer.complete();
-            },
-            error: (error) => {
-              observer.error(error);
-            }
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           });
+          this.http
+            .put<any>(
+              `${this.ApiBackEndUrl}/users/${this.currentUser.idUsuario}`,
+              userData,
+              { headers }
+            )
+            .subscribe({
+              next: (response) => observer.next(response),
+              error: (err) => observer.error(err),
+            });
         } else {
-          observer.error('No access token found');
+          observer.error('No token found');
         }
-      }).catch(error => {
-        observer.error(error);
       });
     });
   }

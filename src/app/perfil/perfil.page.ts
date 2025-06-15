@@ -8,6 +8,8 @@ import { UserService } from '../services/user.service';
 })
 export class PerfilPage implements OnInit {
   editando: boolean = false;
+  nombres: string = '';
+  apellidos: string = '';
   nombrecompleto: string = '';
   codigo_estudiante: string = '';
   carreraE: string = '';
@@ -23,6 +25,8 @@ export class PerfilPage implements OnInit {
     this.userService.getProfile().subscribe({
       next: (user) => {
         if (user) {
+          this.nombres = user.nombres;
+          this.apellidos = user.apellidos;
           this.nombrecompleto = `${user.nombres} ${user.apellidos}`;
           this.codigo_estudiante = user.codigoEstudiante;
           this.carreraE = user.carrera;
@@ -41,11 +45,29 @@ export class PerfilPage implements OnInit {
   }
 
   toggleEditarPerfil() {
-    {
-      this.editando = !this.editando;
-      if (!this.editando) {
-        console.log('Guardando cambios...');
-      }
+    this.editando = !this.editando;
+    if (!this.editando) {
+      console.log('Guardando cambios...');
+      this.userService.updateProfile({
+        nombres: this.nombres,
+        apellidos: this.apellidos,
+        correo: this.correoE,
+        codigoEstudiante: this.codigo_estudiante,
+        correoA: this.correoA,
+        carrera: this.carreraE,
+        ciclo: this.cicloE,
+        edad: this.edadE,
+        sexo: this.sexoE
+      }).subscribe({
+        next: (response) => {
+          console.log('Perfil actualizado:', response);
+          // Optionally, refresh profile data or show success message
+        },
+        error: (err) => {
+          console.error('Error actualizando perfil:', err);
+          // Handle error, e.g., show error message
+        }
+      });
     }
   }
 }
