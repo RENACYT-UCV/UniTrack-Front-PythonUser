@@ -196,4 +196,14 @@ export class UserService {
       });
     });
   }
+
+  forgotPassword(correo: string): Observable<any> {
+    const body = { correo };
+    return this.http.post(`${this.ApiBackEndUrl}/users/forgot-password`, body);
+  }
+
+  resetPassword(correo: string, code: string, newPassword: string): Observable<any> {
+    const body = { correo, code, newPassword };
+    return this.http.post(`${this.ApiBackEndUrl}/users/reset-password`, body);
+  }
 }

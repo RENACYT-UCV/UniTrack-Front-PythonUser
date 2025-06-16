@@ -11,5 +11,6 @@ import { VerificarPage } from './verificar.page';
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, VerificarPageRoutingModule],
   declarations: [VerificarPage],
+  exports: [IonicModule],
 })
 export class VerificarPageModule {}
