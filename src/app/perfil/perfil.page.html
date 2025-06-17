@@ -6,16 +6,8 @@
         {{ nombrecompleto || 'Cargando...' }}
       </ion-label>
       <ng-template #editNombreCompleto>
-        <ion-input
-          [(ngModel)]="nombres"
-          placeholder="Nombres"
-          class="nom"
-        ></ion-input>
-        <ion-input
-          [(ngModel)]="apellidos"
-          placeholder="Apellidos"
-          class="nom"
-        ></ion-input>
+        <ion-input [(ngModel)]="nombres" placeholder="Nombres" class="nom"></ion-input>
+        <ion-input [(ngModel)]="apellidos" placeholder="Apellidos" class="nom"></ion-input>
       </ng-template>
       <p>De vuelta a la universidad!</p>
     </div>
@@ -23,29 +15,12 @@
     <div class="text-header-right">
       <div class="imgper"></div>
 
-      <div
-        class="btn-icono-editar"
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          background-color: rgb(71, 4, 4);
-          margin: 10px 0px 10px 20px;
-          border-radius: 10px;
-        "
-      >
-        <!-- Botón con ícono dinámico -->
-        <button
-          id="btn-editar-perfil"
-          (click)="toggleEditarPerfil()"
-          class="btn-icono-editar"
-        >
-          <ion-icon
-            [name]="editando ? 'save-outline' : 'create-outline'"
-            id="icono-editar"
-          ></ion-icon>
+      <div class="btn-icono-editar">
+        <button id="btn-editar-perfil" (click)="toggleEditarPerfil()">
+          <ion-icon [name]="editando ? 'save-outline' : 'create-outline'" id="icono-editar"></ion-icon> Editar
         </button>
       </div>
+
     </div>
   </div>
 
@@ -55,13 +30,8 @@
         <ion-col class="info-block">
           <div class="label">Código Estudiante</div>
           <div class="sub-container">
-            <ion-input
-              *ngIf="editando; else viewCodigoEstudiante"
-              [(ngModel)]="codigo_estudiante"
-              placeholder="Ingrese código de estudiante"
-              class="sub-form"
-              disabled
-            ></ion-input>
+            <ion-input *ngIf="editando; else viewCodigoEstudiante" [(ngModel)]="codigo_estudiante"
+              placeholder="Ingrese código de estudiante" class="sub-form" disabled></ion-input>
             <ng-template #viewCodigoEstudiante>
               <div class="sub-form">{{ codigo_estudiante }}</div>
             </ng-template>
@@ -73,12 +43,8 @@
         <ion-col class="info-block">
           <div class="label">Carrera</div>
           <div class="sub-container">
-            <ion-input
-              *ngIf="editando; else viewCarrera"
-              [(ngModel)]="carreraE"
-              placeholder="Ingrese carrera"
-              class="sub-form"
-            ></ion-input>
+            <ion-input *ngIf="editando; else viewCarrera" [(ngModel)]="carreraE" placeholder="Ingrese carrera"
+              class="sub-form"></ion-input>
             <ng-template #viewCarrera>
               <div class="sub-form">{{ carreraE }}</div>
             </ng-template>
@@ -94,12 +60,8 @@
             <div class="form-group">
               <div class="tit">Ciclo:</div>
               <div class="sub-container">
-                <ion-input
-                  *ngIf="editando; else viewCiclo"
-                  [(ngModel)]="cicloE"
-                  placeholder="Ingrese ciclo"
-                  class="sub-form"
-                ></ion-input>
+                <ion-input *ngIf="editando; else viewCiclo" [(ngModel)]="cicloE" placeholder="Ingrese ciclo"
+                  class="sub-form"></ion-input>
                 <ng-template #viewCiclo>
                   <div class="sub-form">{{ cicloE }}</div>
                 </ng-template>
@@ -108,13 +70,8 @@
             <div class="form-group">
               <div class="tit">Edad:</div>
               <div class="sub-container">
-                <ion-input
-                  *ngIf="editando; else viewEdad"
-                  [(ngModel)]="edadE"
-                  placeholder="Ingrese edad"
-                  type="number"
-                  class="sub-form"
-                ></ion-input>
+                <ion-input *ngIf="editando; else viewEdad" [(ngModel)]="edadE" placeholder="Ingrese edad" type="number"
+                  class="sub-form"></ion-input>
                 <ng-template #viewEdad>
                   <div class="sub-form">{{ edadE }}</div>
                 </ng-template>
@@ -126,18 +83,10 @@
             <div class="form-group full">
               <div class="tit">Sexo:</div>
               <div class="sub-container">
-                <ion-select
-                  *ngIf="editando; else viewSexo"
-                  [(ngModel)]="sexoE"
-                  placeholder="Seleccione sexo"
-                  class="sub-form"
-                >
-                  <ion-select-option value="Masculino"
-                    >Masculino</ion-select-option
-                  >
-                  <ion-select-option value="Femenino"
-                    >Femenino</ion-select-option
-                  >
+                <ion-select *ngIf="editando; else viewSexo" [(ngModel)]="sexoE" placeholder="Seleccione sexo"
+                  class="sub-form">
+                  <ion-select-option value="Masculino">Masculino</ion-select-option>
+                  <ion-select-option value="Femenino">Femenino</ion-select-option>
                   <ion-select-option value="Otro">Otro</ion-select-option>
                 </ion-select>
                 <ng-template #viewSexo>
@@ -153,14 +102,8 @@
             <div class="form-group full">
               <div class="tit">Correo universitario:</div>
               <div class="sub-container">
-                <ion-input
-                  *ngIf="editando; else viewCorreoE"
-                  [(ngModel)]="correoE"
-                  placeholder="Ingrese correo universitario"
-                  type="email"
-                  class="sub-form"
-                  disabled
-                ></ion-input>
+                <ion-input *ngIf="editando; else viewCorreoE" [(ngModel)]="correoE"
+                  placeholder="Ingrese correo universitario" type="email" class="sub-form" disabled></ion-input>
                 <ng-template #viewCorreoE>
                   <div class="sub-form">{{ correoE }}</div>
                 </ng-template>
@@ -172,13 +115,8 @@
             <div class="form-group full">
               <div class="tit">Correo del apoderado:</div>
               <div class="sub-container">
-                <ion-input
-                  *ngIf="editando; else viewCorreoA"
-                  [(ngModel)]="correoA"
-                  placeholder="Ingrese correo del apoderado"
-                  type="email"
-                  class="sub-form"
-                ></ion-input>
+                <ion-input *ngIf="editando; else viewCorreoA" [(ngModel)]="correoA"
+                  placeholder="Ingrese correo del apoderado" type="email" class="sub-form"></ion-input>
                 <ng-template #viewCorreoA>
                   <div class="sub-form">{{ correoA }}</div>
                 </ng-template>
