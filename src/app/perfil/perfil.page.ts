@@ -21,6 +21,32 @@ export class PerfilPage implements OnInit {
 
   constructor(private userService: UserService) {}
 
+  ciclos: string[] = [
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX',
+    'X',
+    'XI',
+    'XII',
+  ];
+
+  validarEdad() {
+    const edad = Number(this.edadE);
+    if (edad < 1) this.edadE = '1';
+    if (edad > 120) this.edadE = '120';
+  }
+
+  validarTexto(input: string): string {
+    const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s@.\d]+$/; // letras, espacios, @, ., dígitos
+    return regex.test(input) ? input : '';
+  }
+
   ngOnInit() {
     this.userService.getProfile().subscribe({
       next: (user) => {
@@ -48,26 +74,28 @@ export class PerfilPage implements OnInit {
     this.editando = !this.editando;
     if (!this.editando) {
       console.log('Guardando cambios...');
-      this.userService.updateProfile({
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        correo: this.correoE,
-        codigoEstudiante: this.codigo_estudiante,
-        correoA: this.correoA,
-        carrera: this.carreraE,
-        ciclo: this.cicloE,
-        edad: this.edadE,
-        sexo: this.sexoE
-      }).subscribe({
-        next: (response) => {
-          console.log('Perfil actualizado:', response);
-          // Optionally, refresh profile data or show success message
-        },
-        error: (err) => {
-          console.error('Error actualizando perfil:', err);
-          // Handle error, e.g., show error message
-        }
-      });
+      this.userService
+        .updateProfile({
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          correo: this.correoE,
+          codigoEstudiante: this.codigo_estudiante,
+          correoA: this.correoA,
+          carrera: this.carreraE,
+          ciclo: this.cicloE,
+          edad: this.edadE,
+          sexo: this.sexoE,
+        })
+        .subscribe({
+          next: (response) => {
+            console.log('Perfil actualizado:', response);
+            // Optionally, refresh profile data or show success message
+          },
+          error: (err) => {
+            console.error('Error actualizando perfil:', err);
+            // Handle error, e.g., show error message
+          },
+        });
     }
   }
 }

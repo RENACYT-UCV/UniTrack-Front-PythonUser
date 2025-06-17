@@ -23,15 +23,16 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  align-items: flex-start;
-  background-color: rgb(85, 5, 5);
+  align-items: center;
+  background-color: rgb(79, 0, 0);
   margin: 10px 0;
+  min-width: 103px;
   border-radius: 10px;
-  transition: transform 0.2s ease; /* animación suave */
+  transition: transform 0.2s ease;
 }
 
 .btn-icono-editar:hover {
-  transform: scale(1.05); /* efecto hover: un poco más grande */
+  transform: scale(1.05);
 }
 
 #btn-editar-perfil {
@@ -49,14 +50,34 @@
   gap: 3px;
 }
 
+#btn-editar-perfil.modo-edicion {
+  color: #810808;
+  font-weight: bold;
+}
+
+.edit-mode-save {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.edit-mode-noms {
+  transition: background-color 0.3s ease;
+  color: #720101;
+}
+
 .text-header-left {
   color: white;
   font-size: 1.2rem;
   max-width: 70%;
 }
 
-.text-header-left p {
+.text-header-left p:first-child {
   margin: 5px 0;
+  font-size: 12px;
+}
+.text-header-left p:last-child {
+  margin: 5px 0;
+  font-size: 15px;
 }
 
 .text-header-right {
@@ -178,7 +199,6 @@ ion-list.profile-list {
   gap: 10px;
 }
 
-/* Fila de inputs */
 .form-row {
   display: flex;
   flex-direction: column;
@@ -190,7 +210,6 @@ ion-list.profile-list {
   gap: 10px;
 }
 
-/* Cada grupo de input */
 .form-group {
   flex: 1;
   display: flex;
@@ -206,8 +225,8 @@ ion-list.profile-list {
   font-size: 15px;
 }
 
-/* Contenedor visual del valor */
 .sub-container {
+  font-family: "Inter", sans-serif;
   background-color: #073a8d;
   border-radius: 20px;
   display: flex;
@@ -216,6 +235,16 @@ ion-list.profile-list {
   align-items: center;
   height: 50px;
   justify-content: center;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.label-btn {
+  background-color: white;
+  color: #150000;
+  border-bottom: 2px solid #15151535;
+  border-radius: 0px;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .sub-form {
@@ -427,10 +456,10 @@ ion-footer ion-toolbar ion-grid ion-button {
 .nav-btn ion-icon {
   font-size: 1.5rem;
   color: rgb(7, 58, 141);
-  transition: color 0.3s ease, transform 0.3s ease; /* Se incluye transform */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-btn:hover ion-icon {
   color: #c10000;
-  transform: scale(1.2); /* Escala el ícono al 130% */
+  transform: scale(1.2);
 }
