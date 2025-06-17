@@ -17,9 +17,31 @@ export class QrService {
     });
   }
 
-  generateQrCode(hash: string): Observable<{ mensaje: string }> {
-    return this.http.get<{ mensaje: string }>(
-      `${this.apiUrl}/generar?hash=${hash}`
-    );
+  getLatestQrTypeByUserId(idUsuario: number): Observable<{ tipo: string }> {
+    return this.http.post<{ tipo: string }>(`${this.apiUrl}/latest-qr-type`, {
+      idUsuario,
+    });
+  }
+
+  generateQrCode(hash: string, tipo: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/generar?hash=${hash}&tipo=${tipo}`);
+  }
+
+  verificarQr(hash: string, tipo: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/verificarExpiracion`, { hash, tipo });
+  }
+
+  registrarQr(
+    hash: string,
+    idUsuario: number,
+    tipo: string,
+    url: string
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registrar`, {
+      hash,
+      idUsuario,
+      tipo,
+      url,
+    });
   }
 }

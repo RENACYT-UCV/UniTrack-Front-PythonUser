@@ -89,7 +89,7 @@ export class PerfilPage implements OnInit {
         .subscribe({
           next: (response) => {
             console.log('Perfil actualizado:', response);
-            // Optionally, refresh profile data or show success message
+            this.ngOnInit(); // Recargar los datos del perfil después de la actualización
           },
           error: (err) => {
             console.error('Error actualizando perfil:', err);
