@@ -36,12 +36,44 @@ export class PerfilPage implements OnInit {
     'XII',
   ];
 
+  carreras: string[] = [
+    'Administración de Empresas',
+    'Administración en Turismo y Hotelería',
+    'Administración y Gestión Pública',
+    'Administración y Negocios Internacionales',
+    'Arquitectura',
+    'Artes & Diseño Gráfico Empresarial',
+    'Ciencias de la Comunicación',
+    'Ciencias del Deporte',
+    'Contabilidad',
+    'Derecho',
+    'Economía',
+    'Educación Inicial',
+    'Educación Primaria',
+    'Enfermería',
+    'Estomatología',
+    'Ingeniería Agroindustrial',
+    'Ingeniería Ambiental',
+    'Ingeniería Civil',
+    'Ingeniería de Ciencia de Datos',
+    'Ingeniería de Minas',
+    'Ingeniería de Sistemas',
+    'Ingeniería Empresarial',
+    'Ingeniería en Ciberseguridad',
+    'Ingeniería Industrial',
+    'Ingeniería Mecánica Eléctrica',
+    'Medicina',
+    'Nutrición',
+    'Psicología',
+    'Tecnología Médica en Laboratorio Clínico y Anatomía Patológica',
+    'Traducción e Interpretación',
+  ];
+
   validarEdad() {
     const edad = Number(this.edadE);
     if (edad < 1) this.edadE = '1';
     if (edad > 120) this.edadE = '120';
   }
-
   validarTexto(input: string): string {
     const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s@.\d]+$/; // letras, espacios, @, ., dígitos
     return regex.test(input) ? input : '';
@@ -76,11 +108,11 @@ export class PerfilPage implements OnInit {
       console.log('Guardando cambios...');
       this.userService
         .updateProfile({
-          nombres: this.nombres,
-          apellidos: this.apellidos,
+          nombres: this.validarTexto(this.nombres),
+          apellidos: this.validarTexto(this.apellidos),
           correo: this.correoE,
           codigoEstudiante: this.codigo_estudiante,
-          correoA: this.correoA,
+          correoA: this.validarTexto(this.correoA),
           carrera: this.carreraE,
           ciclo: this.cicloE,
           edad: this.edadE,

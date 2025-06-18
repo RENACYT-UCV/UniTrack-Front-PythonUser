@@ -6,12 +6,11 @@
         {{ nombrecompleto || 'Cargando...' }}
       </ion-label>
       <ng-template #editNombreCompleto>
-        <ion-input [(ngModel)]="nombres" placeholder="Nombres" class="nom" [ngClass]="{ 'edit-mode-noms': editando }"
-          (ionBlur)="nombres = validarTexto(nombres)">
-        </ion-input>
+        <ion-input [(ngModel)]="nombres" placeholder="Nombres" class="nom" [ngClass]="{ 'edit-mode-noms': editando }">
+          </ion-input>
         <ion-input [(ngModel)]="apellidos" placeholder="Apellidos" class="nom"
-          [ngClass]="{ 'edit-mode-noms': editando }" (ionBlur)="apellidos = validarTexto(apellidos)">
-        </ion-input>
+            [ngClass]="{ 'edit-mode-noms': editando }">
+          </ion-input>
       </ng-template>
       <p>De vuelta a la universidad!</p>
     </div>
@@ -51,9 +50,10 @@
         <ion-col class="info-block">
           <div class="label">Carrera</div>
           <div class="sub-container" [ngClass]="{ 'label-btn': editando }">
-            <ion-input *ngIf="editando; else viewCarrera" [(ngModel)]="carreraE" placeholder="Ingrese carrera"
-              (ionBlur)="carreraE = validarTexto(carreraE)">
-            </ion-input>
+            <ion-select *ngIf="editando; else viewCarrera" [(ngModel)]="carreraE" placeholder="Seleccione carrera"
+              class="custom-input">
+              <ion-select-option *ngFor="let carrera of carreras" [value]="carrera">{{ carrera }}</ion-select-option>
+            </ion-select>
             <ng-template #viewCarrera>
               <div class="sub-form" [ngClass]="{ 'label-btn': editando }">{{ carreraE }}</div>
             </ng-template>
@@ -129,7 +129,7 @@
               <div class="tit">Correo del apoderado:</div>
               <div class="sub-container" [ngClass]="{ 'label-btn': editando }">
                 <ion-input *ngIf="editando; else viewCorreoA" [(ngModel)]="correoA"
-                  placeholder="Ingrese correo del apoderado" type="email" (ionBlur)="correoA = validarTexto(correoA)">
+                  placeholder="Ingrese correo del apoderado" type="email">
                 </ion-input>
                 <ng-template #viewCorreoA>
                   <div class="sub-form" [ngClass]="{ 'label-btn': editando }">{{ correoA }}</div>
