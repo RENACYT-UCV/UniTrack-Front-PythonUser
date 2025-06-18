@@ -26,7 +26,8 @@ export class RegisterPage implements OnInit {
   constructor(private userService: UserService, private router: Router) {}
 
   validateEdadInput() {
-    if (this.edad !== null) { // Asegúrate de que edad no sea null antes de validar
+    if (this.edad !== null) {
+      // Asegúrate de que edad no sea null antes de validar
       if (this.edad < 0) {
         this.edad = 0;
       } else if (this.edad > 99) {
@@ -57,7 +58,7 @@ export class RegisterPage implements OnInit {
       alert('La edad debe estar entre 0 y 99.');
       return;
     }
-    
+
     if (this.contrasena.length < 6) {
       alert('La contraseña debe tener al menos 6 caracteres');
       return;
@@ -65,7 +66,9 @@ export class RegisterPage implements OnInit {
 
     // Validar formato de correo institucional
     if (!this.correo.endsWith('@ucvvirtual.edu.pe')) {
-      alert('El correo debe ser institucional y terminar en @ucvvirtual.edu.pe');
+      alert(
+        'El correo debe ser institucional y terminar en @ucvvirtual.edu.pe'
+      );
       return;
     }
 
@@ -104,7 +107,7 @@ export class RegisterPage implements OnInit {
       );
   }
 
-  ngOnInit(){}
+  ngOnInit() {}
 
   // Función para alternar la visibilidad de la contraseña
   togglePasswordVisibility() {
