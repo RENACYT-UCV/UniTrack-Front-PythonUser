@@ -16,7 +16,7 @@ export class RegisterPage implements OnInit {
   correoA: string = '';
   carrera: string = '';
   ciclo: string = '';
-  edad: string = '';
+  edad: number | null = null;
   sexo: string = '';
 
   // Propiedades para el campo de contraseña
@@ -24,6 +24,16 @@ export class RegisterPage implements OnInit {
   showPasswordIcon: string = 'eye-off-outline';
 
   constructor(private userService: UserService, private router: Router) {}
+
+  validateEdadInput() {
+    if (this.edad !== null) { // Asegúrate de que edad no sea null antes de validar
+      if (this.edad < 0) {
+        this.edad = 0;
+      } else if (this.edad > 99) {
+        this.edad = 99;
+      }
+    }
+  }
 
   onSubmit() {
     // Validaciones básicas
@@ -35,13 +45,19 @@ export class RegisterPage implements OnInit {
       !this.contrasena ||
       !this.carrera ||
       !this.ciclo ||
-      this.edad === null || // Check for null explicitly if 0 is a valid age
-      !this.sexo
+      !this.sexo ||
+      this.edad === null
     ) {
       alert('Todos los campos son obligatorios');
       return;
     }
 
+    // Validación específica para la edad
+    if (this.edad < 0 || this.edad > 99) {
+      alert('La edad debe estar entre 0 y 99.');
+      return;
+    }
+    
     if (this.contrasena.length < 6) {
       alert('La contraseña debe tener al menos 6 caracteres');
       return;
@@ -64,7 +80,7 @@ export class RegisterPage implements OnInit {
         this.correoA,
         this.carrera,
         this.ciclo,
-        this.edad, // Revertido a string
+        this.edad.toString(), // Revertido a string
         this.sexo
       )
       .subscribe(
@@ -88,7 +104,7 @@ export class RegisterPage implements OnInit {
       );
   }
 
-  ngOnInit() {}
+  ngOnInit(){}
 
   // Función para alternar la visibilidad de la contraseña
   togglePasswordVisibility() {
