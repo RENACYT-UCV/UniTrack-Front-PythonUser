@@ -6,12 +6,7 @@
     </div>
     <div class="ionit" lines="none">
       <div class="imgper">
-        <img
-          [src]="qrCodeUrl || '/assets/qr-image.svg'"
-          alt="Generar su QR"
-          class="qr-ejemplo"
-          id="qr-preview"
-        />
+        <img [src]="qrCodeUrl || '/assets/qr-image.svg'" alt="Generar su QR" class="qr-ejemplo" id="qr-preview" />
       </div>
     </div>
 
@@ -20,24 +15,20 @@
     </div>
 
     <ion-item class="ioniit" lines="none">
-      <ion-label class="text"
-        >Genera tu código QR para que puedas acceder a las instalaciones de la
-        universidad</ion-label
-      >
+      <ion-label class="text">Genera tu código QR para que puedas acceder a las instalaciones de la
+        universidad</ion-label>
     </ion-item>
 
     <!-- Switch para seleccionar entrada o salida -->
     <div class="select-item-container">
       <label class="toggle-label">{{ isEntrada ? 'Entrada' : 'Salida' }}</label>
-      <ion-toggle
-        [(ngModel)]="isEntrada"
-        (ionChange)="onToggleChange()"
-      ></ion-toggle>
+      <ion-toggle [(ngModel)]="isEntrada" (ionChange)="onToggleChange()"></ion-toggle>
     </div>
 
     <div class="btn-qr-container">
-      <ion-button class="btn-qr" (click)="generarQR()"> GENERAR QR </ion-button>
+      <button class="btn-qr" (click)="generarQR()"> GENERAR QR </button>
     </div>
+
   </ion-list>
 </ion-content>
 
