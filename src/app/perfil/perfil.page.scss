@@ -19,6 +19,12 @@
   box-sizing: border-box;
 }
 
+.data-main-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 100px; /* para no pisar al footer */
+}
+
 .btn-icono-editar {
   display: flex;
   flex-direction: column;
@@ -98,6 +104,12 @@
   padding-top: 20px;
 }
 
+.page-profile {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 ion-list.profile-list {
   background: white;
   margin-top: -60px;
@@ -106,6 +118,10 @@ ion-list.profile-list {
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
   z-index: 2;
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 992px) {
@@ -394,6 +410,10 @@ ion-list.profile-list {
 }
 
 ion-content {
+  position: relative;
+  display: flex;
+  height: 100%;
+
   --background: #f2f2f2;
   padding-top: 280px;
   position: relative;
@@ -436,7 +456,9 @@ ion-item-background {
 .table-container {
   padding: 0;
 }
-
+ion-footer {
+  z-index: 10;
+}
 ion-footer ion-toolbar {
   position: fixed;
   bottom: 0;
