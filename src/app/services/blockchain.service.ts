@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -10,8 +11,8 @@ export class BlockchainService {
 
   constructor(private http: HttpClient) { }
 
-  addBlock(data: any, idUsuario: number) {
-    return this.http.post(`${this.apiUrl}/add`, { data, idUsuario });
+  addBlock(data: any, idUsuario: number): Observable<{ block: any; qrUrl: string }> {
+    return this.http.post<{ block: any; qrUrl: string }>(`${this.apiUrl}/add`, { data, idUsuario });
   }
 
   getChain() {
