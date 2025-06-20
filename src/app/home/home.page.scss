@@ -44,6 +44,7 @@ ion-content {
 
 ion-list {
   background: transparent;
+  padding-bottom: 10em;
 }
 
 // Text Styles
@@ -216,7 +217,7 @@ ion-list {
 ion-row {
   border: none;
   background-color: $white;
-  margin-top: 20px;
+  margin-top: 20px !important;
   gap: 0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
   color: $primary-blue;

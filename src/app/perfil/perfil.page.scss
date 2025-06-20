@@ -22,7 +22,7 @@
 .data-main-container {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 100px; /* para no pisar al footer */
+  padding-bottom: 100px;
 }
 
 .btn-icono-editar {
@@ -247,7 +247,7 @@ ion-list.profile-list {
   border-radius: 20px;
   display: flex;
   padding: 5px;
-  min-height: 50px;
+  min-height: 70px;
   align-items: center;
   height: 50px;
   justify-content: center;
